@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 
 class Pessoa:
@@ -28,10 +29,11 @@ class Pessoa:
         if vezes == '':
             return 'Valor inválido'
         parcela = total / vezes
+        mes = int(datetime.today().strftime('%m'))
         print(f'{item} - R${parcela}')
         with open(f'{self.nome}.csv', 'a') as f:
             writer = csv.writer(f, lineterminator='\r')
-            writer.writerow([item, parcela])
+            writer.writerow([item, parcela, mes])
 
     def lista(self):
         with open(f'{self.nome}.csv', 'r') as f:
